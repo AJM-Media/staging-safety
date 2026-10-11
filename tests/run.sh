@@ -51,7 +51,7 @@ docker run -d --name site --network stsf \
 docker exec site sh -c 'curl -sSLo /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x /usr/local/bin/wp' || die "wp-cli"
 WP_TARBALL=https://wordpress.org/wordpress-$WP_VERSION.tar.gz
 [ "$WP_VERSION" = latest ] && WP_TARBALL=https://wordpress.org/latest.tar.gz
-x sh -c "curl -sSfL --retry 5 --retry-all-errors -o /tmp/wordpress.tar.gz $WP_TARBALL && tar -xzf /tmp/wordpress.tar.gz --strip-components=1 -C /var/www/html" || die "core download"
+x sh -c "curl -sSfL --retry 6 --retry-delay 10 --retry-all-errors --connect-timeout 20 -o /tmp/wordpress.tar.gz $WP_TARBALL && tar -xzf /tmp/wordpress.tar.gz --strip-components=1 -C /var/www/html" || die "core download"
 echo "WordPress $(wp core version)"
 wp config create --dbname=wp --dbuser=root --dbpass=root --dbhost=db --skip-check --quiet || die "config"
 wp config set WP_DEBUG true --raw --quiet

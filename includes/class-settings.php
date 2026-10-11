@@ -65,7 +65,8 @@ class Settings {
 		$input = is_array( $input ) ? $input : array();
 		$clean = self::defaults();
 
-		$clean['production_url']  = isset( $input['production_url'] ) ? self::origin( $input['production_url'] ) : self::get( 'production_url' );
+		$saved                    = (array) get_option( self::OPTION, array() );
+		$clean['production_url']  = isset( $input['production_url'] ) ? self::origin( $input['production_url'] ) : ( isset( $saved['production_url'] ) ? (string) $saved['production_url'] : '' );
 		$clean['label']           = isset( $input['label'] ) ? mb_substr( sanitize_text_field( $input['label'] ), 0, 40 ) : '';
 		$clean['noindex']         = ! empty( $input['noindex'] );
 		$clean['warn_production'] = ! empty( $input['warn_production'] );
@@ -78,6 +79,8 @@ class Settings {
 		}
 		if ( 'reroute' === $clean['mail_mode'] && ! is_email( $clean['reroute_to'] ) ) {
 			$clean['mail_mode'] = 'hold';
+		}
+		if ( 'hold' === $clean['mail_mode'] && isset( $input['mail_mode'] ) && 'reroute' === $input['mail_mode'] && function_exists( 'add_settings_error' ) ) {
 			add_settings_error( self::OPTION, 'stsf_reroute', __( 'Enter a valid email address to reroute emails to. Emails will be held until then.', 'staging-safety' ) );
 		}
 

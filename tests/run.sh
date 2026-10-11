@@ -31,7 +31,7 @@ h() { wp --user=1 eval-file /tmp/stsf.php "$@" | tail -n 1; }
 hu() { local url=$1; shift; wp --user=1 --url="$url" eval-file /tmp/stsf.php "$@" | tail -n 1; }
 headers() { docker exec site curl -s -D - -o /dev/null "$1/"; }
 body() { docker exec site curl -s "$1/"; }
-sitemap() { docker exec site curl -s "$1/?sitemap=index" | grep -c "<sitemapindex"; }
+sitemap() { docker exec site curl -sL "$1/?sitemap=index" | grep -c "<sitemapindex"; }
 move_to() { wp option update home "$1" --quiet; wp option update siteurl "$1" --quiet; }
 
 echo "== PHP $PHP_VERSION, WordPress $WP_VERSION, $INSTALL"
@@ -133,7 +133,9 @@ else
 	expect "live: custom badge text not used on production" "Production | stsf-env stsf-env-production" "$(h badge)"
 	expect_not "live: no noindex header" "x-robots-tag" "$(headers $LIVE)"
 	expect_has "live: emails sent normally" "true none customer@example.com" "$(h mail)"
-	expect "live: core sitemap on" "1" "$(sitemap $LIVE)"
+	SM=$(sitemap $LIVE)
+	expect "live: core sitemap on" "1" "$SM"
+	[ "$SM" = 1 ] || docker exec site curl -s -o /dev/null -w 'sitemap request: %{http_code} %{redirect_url} %{content_type}\n' "$LIVE/?sitemap=index"
 
 	wp option update blog_public 0 --quiet
 	expect "live: hidden-from-search warning" "hidden" "$(h notices)"

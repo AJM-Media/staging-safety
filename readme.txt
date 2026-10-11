@@ -5,7 +5,7 @@ Tags: staging, environment, email, noindex, local development
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,10 +79,10 @@ No. Noindex is only added on sites whose address differs from the live address y
 
 == Screenshots ==
 
-1. The admin bar on a staging copy.
+1. The admin bar on a staging copy, showing what's being held back.
 2. Settings: live address, email handling, search engines and the email log.
 
 == Changelog ==
 
-= 0.1.0 =
-* First version.
+= 1.0.0 =
+* First release.

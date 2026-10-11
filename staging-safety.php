@@ -3,7 +3,7 @@
  * Plugin Name:       Staging Safety
  * Plugin URI:        https://wordpress.org/plugins/staging-safety/
  * Description:       Shows which copy of your site you're on, holds emails on staging and local copies, and keeps them out of search engines.
- * Version:           0.1.0
+ * Version:           1.0.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Andrew Murray
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'STSF_VERSION', '0.1.0' );
+define( 'STSF_VERSION', '1.0.0' );
 define( 'STSF_FILE', __FILE__ );
 define( 'STSF_DIR', plugin_dir_path( __FILE__ ) );
 define( 'STSF_URL', plugin_dir_url( __FILE__ ) );

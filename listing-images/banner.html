@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+	html, body { margin: 0; }
+	body {
+		position: relative;
+		width: 772px;
+		height: 250px;
+		overflow: hidden;
+		font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+		background: linear-gradient(120deg, #16325c 0%, #2271b1 100%);
+		color: #ffffff;
+	}
+	.copy { position: absolute; left: 36px; top: 54px; width: 340px; }
+	.title { font-size: 31px; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+	.tagline { margin-top: 14px; font-size: 16px; line-height: 1.45; color: #d6e4f5; }
+	.bars { position: absolute; left: 412px; top: 44px; width: 324px; }
+	.bar {
+		display: flex;
+		align-items: center;
+		height: 32px;
+		margin-bottom: 14px;
+		padding-left: 12px;
+		background: #1d2327;
+		border-radius: 6px;
+		font-size: 13px;
+		color: #f0f0f1;
+		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+		overflow: hidden;
+	}
+	.site { opacity: 0.85; margin-right: 12px; }
+	.env { align-self: stretch; display: flex; align-items: center; padding: 0 12px; font-weight: 600; }
+	.local { background: #00a32a; }
+	.staging { background: #dba617; color: #1d2327; }
+	.production { background: #d63638; }
+	.note { margin-left: auto; padding-right: 12px; font-size: 12px; color: #a7aaad; }
+</style>
+</head>
+<body>
+<div class="copy">
+	<div class="title">Staging Safety</div>
+	<div class="tagline">Know which site you're on. Keep staging and local copies from emailing customers or showing up in Google.</div>
+</div>
+<div class="bars">
+	<div class="bar"><span class="site">My Site</span><span class="env local">Local</span><span class="note">Emails held</span></div>
+	<div class="bar"><span class="site">My Site</span><span class="env staging">Staging</span><span class="note">Noindex on</span></div>
+	<div class="bar"><span class="site">My Site</span><span class="env production">Production</span><span class="note">Live</span></div>
+</div>
+</body>
+</html>

@@ -23,10 +23,26 @@ code; files marked `export-ignore` in `.gitattributes` are left out:
 
     git archive --format=zip --prefix=staging-safety/ -o ../staging-safety.zip HEAD
 
+wp.org listing images (icon, banner, screenshots) are in `.wordpress-org/`.
+The icon and banner are rendered from the HTML in `listing-images/`:
+
+    PLAYWRIGHT=/path/to/node_modules/playwright node listing-images/render.mjs
+
 Tests run in GitHub Actions on every branch push (`tests/run.sh`): WordPress in
 Docker, moved between a live address, a copy address, a staging-looking
 address and a local one, across PHP 7.4-8.3, WordPress 6.0 and latest, single
 site and multisite.
+
+## Releasing
+
+1. Bump the version in the plugin header, `STSF_VERSION` and the readme's
+   `Stable tag`, and add a changelog entry.
+2. Push the commit, then push a tag with the bare version number, e.g.
+   `git tag 1.0.0 && git push origin 1.0.0`.
+
+The tag runs the tests, checks the three version numbers match, then
+publishes to WordPress.org SVN (`trunk`, `tags/<version>` and the listing
+images). It needs the `SVN_USERNAME` and `SVN_PASSWORD` repository secrets.
 
 wp-config constants: `STAGING_SAFETY_PRODUCTION_URL`, `STAGING_SAFETY_DISABLE`.
 Filters: `staging_safety_environment`, `staging_safety_local_suffixes`,

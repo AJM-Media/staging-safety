@@ -1,0 +1,30 @@
+#wpadminbar .stsf-env {
+	--stsf-bg: #d63638;
+	--stsf-fg: #fff;
+}
+
+#wpadminbar .stsf-env-local {
+	--stsf-bg: #00a32a;
+}
+
+#wpadminbar .stsf-env-development {
+	--stsf-bg: #2271b1;
+}
+
+#wpadminbar .stsf-env-staging {
+	--stsf-bg: #dba617;
+	--stsf-fg: #1d2327;
+}
+
+#wpadminbar .stsf-env-alert {
+	--stsf-bg: #8a2424;
+}
+
+#wpadminbar .stsf-env > .ab-item,
+#wpadminbar .stsf-env:hover > .ab-item,
+#wpadminbar .stsf-env.hover > .ab-item,
+#wpadminbar .stsf-env > .ab-item:focus {
+	background: var(--stsf-bg) !important;
+	color: var(--stsf-fg) !important;
+	font-weight: 600;
+}

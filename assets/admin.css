@@ -1,0 +1,47 @@
+.stsf .stsf-current {
+	max-width: 720px;
+	margin: 16px 0;
+	padding: 4px 16px;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-left: 6px solid #d63638;
+}
+
+.stsf .stsf-current-local {
+	border-left-color: #00a32a;
+}
+
+.stsf .stsf-current-development {
+	border-left-color: #2271b1;
+}
+
+.stsf .stsf-current-staging {
+	border-left-color: #dba617;
+}
+
+.stsf .stsf-current-type {
+	font-size: 15px;
+}
+
+.stsf .stsf-current ul {
+	margin: 0 0 12px;
+	list-style: disc;
+	padding-left: 20px;
+}
+
+.stsf .stsf-log {
+	max-width: 960px;
+}
+
+.stsf .stsf-donate {
+	max-width: 720px;
+	margin-top: 32px;
+	padding: 4px 16px;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-left: 4px solid #ff5e5b;
+}
+
+.stsf .stsf-dismiss {
+	margin-left: 12px;
+}
